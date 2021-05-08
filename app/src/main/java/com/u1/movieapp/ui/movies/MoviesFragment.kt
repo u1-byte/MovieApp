@@ -1,4 +1,4 @@
-package com.u1.movieapp.ui.home
+package com.u1.movieapp.ui.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.u1.movieapp.R
 
-class HomeFragment : Fragment() {
+class MoviesFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var moviesViewModel: MoviesViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        moviesViewModel =
+                ViewModelProvider(this).get(MoviesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_movies, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        moviesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
