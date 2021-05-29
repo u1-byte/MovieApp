@@ -1,5 +1,9 @@
 package com.u1.movieapp.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class SeriesData(
         val title: String,
         val posterImg: Int,
@@ -7,4 +11,4 @@ data class SeriesData(
         val totalEpisode : String,
         val genre : String,
         val desc: String
-)
+) : Parcelable
