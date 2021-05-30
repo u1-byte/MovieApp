@@ -2,4 +2,10 @@
     <string name="app_name">MovieApp</string>
     <string name="title_movies">Movies</string>
     <string name="title_series">Series</string>
+    <string name="title_film">Title Film</string>
+    <string name="subtitle">Now Playing</string>
+    <string name="subtitle2">Most Popular</string>
+    <string name="genre_film">Genre</string>
+    <string name="date_film">Date</string>
+    <string name="desc_film">Sinopsis</string>
 </resources>

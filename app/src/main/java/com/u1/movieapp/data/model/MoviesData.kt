@@ -10,5 +10,6 @@ data class MoviesData(
         val releaseDate: String,
         val duration : String,
         val genre : String,
-        val desc: String
+        val desc: String,
+        val viewType: Int
 ) : Parcelable

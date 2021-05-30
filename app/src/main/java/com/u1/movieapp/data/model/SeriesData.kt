@@ -10,5 +10,6 @@ data class SeriesData(
         val airedDate: String,
         val totalEpisode : String,
         val genre : String,
-        val desc: String
+        val desc: String,
+        val viewType: Int
 ) : Parcelable

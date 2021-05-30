@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.u1.movieapp.ui.movies.MoviesFragment"
+        android:name="com.u1.movieapp.ui.home.content.movies.MoviesFragment"
         android:label="@string/title_movies"
         tools:layout="@layout/fragment_movies" />
 
     <fragment
         android:id="@+id/navigation_series"
-        android:name="com.u1.movieapp.ui.series.SeriesFragment"
+        android:name="com.u1.movieapp.ui.home.content.series.SeriesFragment"
         android:label="@string/title_series"
         tools:layout="@layout/fragment_series" />
 </navigation>
