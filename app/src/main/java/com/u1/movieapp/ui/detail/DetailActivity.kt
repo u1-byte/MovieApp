@@ -5,6 +5,9 @@ import android.os.Bundle
 import com.u1.movieapp.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
+    companion object {
+        const val EXTRA_DATA = "extra_data"
+    }
 
     private lateinit var binding : ActivityDetailBinding
 

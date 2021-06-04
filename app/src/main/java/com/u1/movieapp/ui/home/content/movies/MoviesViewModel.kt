@@ -3,11 +3,10 @@ package com.u1.movieapp.ui.home.content.movies
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.u1.movieapp.data.model.DummyData
+import com.u1.movieapp.data.utils.DummyBuilder
 
 class MoviesViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    fun getMoviesPopular(): List<DummyData> = DummyBuilder.generateDummyMoviesPopular()
+    fun getMoviesPlaying(): List<DummyData> = DummyBuilder.generateDummyMoviesPlaying()
 }

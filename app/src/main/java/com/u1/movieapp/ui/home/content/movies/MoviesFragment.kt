@@ -4,28 +4,52 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.u1.movieapp.R
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.u1.movieapp.databinding.FragmentMoviesBinding
+import com.u1.movieapp.ui.home.adapter.DescAdapter
+import com.u1.movieapp.ui.home.adapter.PosterAdapter
 
 class MoviesFragment : Fragment() {
 
-    private lateinit var moviesViewModel: MoviesViewModel
+    private val moviesViewModel: MoviesViewModel by viewModels()
+
+    private lateinit var fragmentMoviesBinding: FragmentMoviesBinding
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        moviesViewModel =
-                ViewModelProvider(this).get(MoviesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_movies, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        moviesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    ): View {
+        fragmentMoviesBinding = FragmentMoviesBinding.inflate(layoutInflater, container, false)
+        return fragmentMoviesBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (activity != null) {
+            val dataMoviesPlaying = moviesViewModel.getMoviesPlaying()
+            val dataMoviesPopular = moviesViewModel.getMoviesPopular()
+            val adapterPoster = PosterAdapter()
+            val adapterDesc = DescAdapter()
+
+            adapterPoster.setData(dataMoviesPlaying)
+            adapterDesc.setData(dataMoviesPopular)
+
+            with(fragmentMoviesBinding) {
+                rvPoster.apply {
+                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    setHasFixedSize(true)
+                    adapter = adapterPoster
+                }
+
+                rvPosterDesc.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    setHasFixedSize(true)
+                    adapter = adapterDesc
+                }
+            }
+        }
     }
 }
