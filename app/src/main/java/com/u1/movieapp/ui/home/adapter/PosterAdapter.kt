@@ -15,6 +15,12 @@ class PosterAdapter: RecyclerView.Adapter<PosterAdapter.DataViewHolder>() {
 
     private var listData = ArrayList<DummyData>()
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback (onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     fun setData(data: List<DummyData>?) {
         if (data == null) return
         this.listData.clear()
@@ -39,9 +45,7 @@ class PosterAdapter: RecyclerView.Adapter<PosterAdapter.DataViewHolder>() {
             with(binding) {
                 titleFilm.text = data.title
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_DATA, data)
-                    itemView.context.startActivity(intent)
+                    onItemClickCallback.onItemClicked(data)
                 }
                 Glide.with(itemView.context)
                     .load(data.posterImg)
@@ -50,5 +54,9 @@ class PosterAdapter: RecyclerView.Adapter<PosterAdapter.DataViewHolder>() {
                     .into(imgPoster)
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: DummyData)
     }
 }

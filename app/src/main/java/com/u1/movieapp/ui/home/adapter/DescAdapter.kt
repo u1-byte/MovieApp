@@ -15,6 +15,12 @@ class DescAdapter : RecyclerView.Adapter<DescAdapter.DataViewHolder>() {
 
     private var listData = ArrayList<DummyData>()
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback (onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     fun setData(data: List<DummyData>?) {
         if (data == null) return
         this.listData.clear()
@@ -42,9 +48,7 @@ class DescAdapter : RecyclerView.Adapter<DescAdapter.DataViewHolder>() {
                 genreFilm.text = data.genre
                 descFilm.text = data.desc
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_DATA, data)
-                    itemView.context.startActivity(intent)
+                    onItemClickCallback.onItemClicked(data)
                 }
                 Glide.with(itemView.context)
                     .load(data.posterImg)
@@ -53,6 +57,10 @@ class DescAdapter : RecyclerView.Adapter<DescAdapter.DataViewHolder>() {
                     .into(imgPoster)
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: DummyData)
     }
 
 }
