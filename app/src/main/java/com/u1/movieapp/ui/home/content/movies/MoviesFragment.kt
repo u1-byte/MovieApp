@@ -57,13 +57,13 @@ class MoviesFragment : Fragment() {
             adapterDesc.setData(dataMoviesPopular)
 
             with(fragmentMoviesBinding) {
-                rvPoster.apply {
+                rvPosterMovies.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     setHasFixedSize(true)
                     adapter = adapterPoster
                 }
 
-                rvPosterDesc.apply {
+                rvPosterDescMovies.apply {
                     layoutManager = LinearLayoutManager(context)
                     setHasFixedSize(true)
                     adapter = adapterDesc

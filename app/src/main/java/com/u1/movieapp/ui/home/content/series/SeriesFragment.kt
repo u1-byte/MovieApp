@@ -57,13 +57,13 @@ class SeriesFragment : Fragment() {
             adapterDesc.setData(dataSeriesPopular)
 
             with(fragmentSeriesBinding) {
-                rvPoster.apply {
+                rvPosterSeries.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     setHasFixedSize(true)
                     adapter = adapterPoster
                 }
 
-                rvPosterDesc.apply {
+                rvPosterDescSeries.apply {
                     layoutManager = LinearLayoutManager(context)
                     setHasFixedSize(true)
                     adapter = adapterDesc
