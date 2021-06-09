@@ -2,6 +2,7 @@
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.u1.movieapp.R
@@ -15,6 +16,8 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityDetailBinding
 
+    private val viewModel: DetailViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -26,7 +29,9 @@ class DetailActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         val data = intent.getParcelableExtra<DummyData>(EXTRA_DATA) as DummyData
-        setView(data)
+        viewModel.setSelectedFilm(data.id)
+        val resultData = viewModel.getSelectedFilm()
+        setView(resultData)
     }
 
     override fun onSupportNavigateUp(): Boolean {

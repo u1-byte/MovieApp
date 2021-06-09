@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DummyData(
+        val id: Int,
         val title: String,
         val posterImg: Int,
         val date: String,
