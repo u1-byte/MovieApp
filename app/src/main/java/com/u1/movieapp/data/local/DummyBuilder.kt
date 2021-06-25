@@ -1,7 +1,7 @@
-package com.u1.movieapp.data.local.utils
+package com.u1.movieapp.data.local
 
 import com.u1.movieapp.R
-import com.u1.movieapp.data.local.model.DummyData
+import com.u1.movieapp.data.model.DummyData
 
 object DummyBuilder {
 

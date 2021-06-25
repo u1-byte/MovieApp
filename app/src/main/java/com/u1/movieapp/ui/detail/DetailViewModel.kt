@@ -1,31 +1,29 @@
 package com.u1.movieapp.ui.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.u1.movieapp.data.local.model.DummyData
-import com.u1.movieapp.data.local.utils.DummyBuilder
+import com.u1.movieapp.data.DataRepository
+import com.u1.movieapp.data.model.DummyData
+import com.u1.movieapp.data.local.DummyBuilder
+import com.u1.movieapp.data.model.DetailModel
 
-class DetailViewModel: ViewModel() {
+class DetailViewModel(private val repo: DataRepository): ViewModel() {
 
-    private var filmId = 0
-
-    fun setSelectedFilm(filmId: Int) {
-        this.filmId = filmId
+    companion object {
+        const val MOVIES_TYPE = 0
+        const val SERIES_TYPE = 1
     }
 
-    fun getSelectedFilm(): DummyData {
-        lateinit var selectedData: DummyData
-        val dataMovies = DummyBuilder.generateDummyMoviesPopular()
-        val dataSeries = DummyBuilder.generateDummySeriesPopular()
-        val allData = dataMovies + dataSeries
+    private lateinit var detailData: LiveData<DetailModel>
 
-        for (data in allData){
-            if (data.id == filmId) {
-                selectedData = data
-            }
+    fun setSelectedFilm(filmId: String, filmType: Int) {
+        detailData = if (filmType == 0) {
+            repo.getMoviesDetail(filmId)
+        } else {
+            repo.getSeriesDetail(filmId)
         }
-
-        return selectedData
     }
 
+    fun getSelectedFilm() = detailData
 
 }

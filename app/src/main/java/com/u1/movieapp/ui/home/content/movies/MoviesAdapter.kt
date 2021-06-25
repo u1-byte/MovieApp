@@ -1,4 +1,4 @@
-package com.u1.movieapp.ui.home.adapter
+package com.u1.movieapp.ui.home.content.movies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.u1.movieapp.R
-import com.u1.movieapp.data.local.model.DummyData
+import com.u1.movieapp.data.model.MoviesModel
 import com.u1.movieapp.databinding.ItemPosterOnlyBinding
+import com.u1.movieapp.utils.ConstantVal.IMG_URL
 
-class PosterAdapter: RecyclerView.Adapter<PosterAdapter.DataViewHolder>() {
+class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.DataViewHolder>() {
 
-    private var listData = ArrayList<DummyData>()
+    private var listData = ArrayList<MoviesModel>()
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -19,7 +20,7 @@ class PosterAdapter: RecyclerView.Adapter<PosterAdapter.DataViewHolder>() {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    fun setData(data: List<DummyData>?) {
+    fun setData(data: List<MoviesModel>?) {
         if (data == null) return
         this.listData.clear()
         this.listData.addAll(data)
@@ -39,14 +40,14 @@ class PosterAdapter: RecyclerView.Adapter<PosterAdapter.DataViewHolder>() {
 
 
     inner class DataViewHolder(private val binding: ItemPosterOnlyBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: DummyData) {
+        fun bind(data: MoviesModel) {
             with(binding) {
                 titleFilm.text = data.title
                 itemView.setOnClickListener {
-                    onItemClickCallback.onItemClicked(data)
+                    onItemClickCallback.onItemClicked(data.id.toString())
                 }
                 Glide.with(itemView.context)
-                    .load(data.posterImg)
+                    .load(IMG_URL + data.poster)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_refresh).error(R.drawable.ic_broken_image))
                     .into(imgPoster)
@@ -55,6 +56,6 @@ class PosterAdapter: RecyclerView.Adapter<PosterAdapter.DataViewHolder>() {
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: DummyData)
+        fun onItemClicked(id: String)
     }
 }

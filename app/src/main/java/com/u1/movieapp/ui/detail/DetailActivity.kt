@@ -2,21 +2,30 @@
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.Element
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.u1.movieapp.R
-import com.u1.movieapp.data.local.model.DummyData
+import com.u1.movieapp.data.model.DetailModel
+import com.u1.movieapp.data.model.DummyData
 import com.u1.movieapp.databinding.ActivityDetailBinding
+import com.u1.movieapp.utils.ConstantVal.IMG_URL
+import com.u1.movieapp.utils.ViewModelFactory
 
-class DetailActivity : AppCompatActivity() {
+ class DetailActivity : AppCompatActivity() {
+
     companion object {
         const val EXTRA_DATA = "extra_data"
+        const val EXTRA_TYPE = "extra_type"
     }
 
     private lateinit var binding : ActivityDetailBinding
 
-    private val viewModel: DetailViewModel by viewModels()
+    private lateinit var viewModel: DetailViewModel
+
+    private lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +37,12 @@ class DetailActivity : AppCompatActivity() {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back)
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-        val data = intent.getParcelableExtra<DummyData>(EXTRA_DATA) as DummyData
-        viewModel.setSelectedFilm(data.id)
-        val resultData = viewModel.getSelectedFilm()
-        setView(resultData)
+        viewModelFactory = ViewModelFactory.getInstance(this)
+        viewModel = ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
+
+        val dataId = intent.getStringExtra(EXTRA_DATA)
+        val dataType = intent.getIntExtra(EXTRA_TYPE, -1)
+        checkingData(dataId, dataType)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -39,16 +50,24 @@ class DetailActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setView(data: DummyData){
-        binding.apply {
+    private fun checkingData(dataId: String?, dataType: Int){
+        if (dataId != null && dataType != -1){
+            viewModel.setSelectedFilm(dataId, dataType)
+            viewModel.getSelectedFilm().observe(this, { detailData ->
+                setView(detailData)
+            })
+        }
+    }
 
+    private fun setView(data: DetailModel){
+        binding.apply {
             title.text = data.title
-            genre.text = data.genre
-            date.text = data.date
-            desc.text = data.desc
+            genre.text = data.genres!!.joinToString()
+            date.text = data.year
+            desc.text = data.overview
 
             Glide.with(this@DetailActivity)
-                    .load(data.posterImg)
+                    .load(IMG_URL + data.poster)
                     .apply(
                             RequestOptions.placeholderOf(R.drawable.ic_refresh).error(R.drawable.ic_broken_image))
                     .into(poster)

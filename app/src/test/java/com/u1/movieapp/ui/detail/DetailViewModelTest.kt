@@ -1,6 +1,6 @@
 package com.u1.movieapp.ui.detail
 
-import com.u1.movieapp.data.local.utils.DummyBuilder
+import com.u1.movieapp.data.local.DummyBuilder
 import org.junit.Test
 
 import org.junit.Assert.*

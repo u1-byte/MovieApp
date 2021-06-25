@@ -7,16 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.u1.movieapp.data.local.model.DummyData
 import com.u1.movieapp.databinding.FragmentSeriesBinding
 import com.u1.movieapp.ui.detail.DetailActivity
-import com.u1.movieapp.ui.home.adapter.PosterAdapter
+import com.u1.movieapp.ui.detail.DetailViewModel.Companion.SERIES_TYPE
+import com.u1.movieapp.utils.ViewModelFactory
 
 class SeriesFragment : Fragment() {
 
-    private val seriesViewModel: SeriesViewModel by viewModels()
+    private lateinit var seriesViewModelFactory: ViewModelFactory
+
+    private lateinit var seriesViewModel: SeriesViewModel
 
     private lateinit var fragmentSeriesBinding: FragmentSeriesBinding
 
@@ -31,20 +33,27 @@ class SeriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         if (activity != null) {
-            val dataSeriesPopular = seriesViewModel.getSeriesPopular()
-            val adapterPoster = PosterAdapter()
+            seriesViewModelFactory = ViewModelFactory.getInstance(requireActivity())
+            seriesViewModel = ViewModelProvider(this, seriesViewModelFactory)[SeriesViewModel::class.java]
+            val adapterPoster = SeriesAdapter()
             val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 4 else 2
 
-            adapterPoster.setOnItemClickCallback(object: PosterAdapter.OnItemClickCallback{
-                override fun onItemClicked(data: DummyData) {
-                    val intent = Intent(activity, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_DATA, data)
-                    startActivity(intent)
+            seriesViewModel.getSeriesPopular().observe(viewLifecycleOwner, { series ->
+                adapterPoster.apply {
+                    setData(series)
+                    setOnItemClickCallback(object: SeriesAdapter.OnItemClickCallback{
+                        override fun onItemClicked(id: String) {
+                            val intent = Intent(activity, DetailActivity::class.java)
+                            intent.putExtra(DetailActivity.EXTRA_DATA, id)
+                            intent.putExtra(DetailActivity.EXTRA_TYPE, SERIES_TYPE)
+                            startActivity(intent)
+                        }
+                    })
+                    notifyDataSetChanged()
                 }
             })
-
-            adapterPoster.setData(dataSeriesPopular)
 
             with(fragmentSeriesBinding) {
                 rvPosterSeries.apply {
