@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.u1.movieapp.R
-import com.u1.movieapp.data.model.DummyData
+import com.u1.movieapp.data.local.model.DummyData
 import com.u1.movieapp.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -44,7 +44,6 @@ class DetailActivity : AppCompatActivity() {
 
             title.text = data.title
             genre.text = data.genre
-            duration.text = data.duration
             date.text = data.date
             desc.text = data.desc
 

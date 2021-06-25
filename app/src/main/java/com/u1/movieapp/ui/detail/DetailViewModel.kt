@@ -1,8 +1,8 @@
 package com.u1.movieapp.ui.detail
 
 import androidx.lifecycle.ViewModel
-import com.u1.movieapp.data.model.DummyData
-import com.u1.movieapp.data.utils.DummyBuilder
+import com.u1.movieapp.data.local.model.DummyData
+import com.u1.movieapp.data.local.utils.DummyBuilder
 
 class DetailViewModel: ViewModel() {
 
@@ -14,11 +14,9 @@ class DetailViewModel: ViewModel() {
 
     fun getSelectedFilm(): DummyData {
         lateinit var selectedData: DummyData
-        val data1 = DummyBuilder.generateDummyMoviesPlaying()
-        val data2 = DummyBuilder.generateDummyMoviesPopular()
-        val data3 = DummyBuilder.generateDummySeriesPlaying()
-        val data4 = DummyBuilder.generateDummySeriesPopular()
-        val allData = data1 + data2 + data3 + data4
+        val dataMovies = DummyBuilder.generateDummyMoviesPopular()
+        val dataSeries = DummyBuilder.generateDummySeriesPopular()
+        val allData = dataMovies + dataSeries
 
         for (data in allData){
             if (data.id == filmId) {

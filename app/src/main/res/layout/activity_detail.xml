@@ -47,15 +47,6 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                android:id="@+id/genre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/genre_film"
-                android:fontFamily="@font/roboto_reg"
-                android:textColor="@color/primaryTextColor"
-                android:textSize="18sp"/>
-
-            <TextView
                 android:id="@+id/date"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
@@ -67,11 +58,11 @@
                 app:drawableStartCompat="@drawable/ic_date" />
 
             <TextView
-                android:id="@+id/duration"
+                android:id="@+id/genre"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/duration_film"
+                android:text="@string/genre_film"
                 android:fontFamily="@font/roboto_reg"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="18sp"

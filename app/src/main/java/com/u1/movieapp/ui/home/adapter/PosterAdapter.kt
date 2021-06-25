@@ -1,15 +1,13 @@
 package com.u1.movieapp.ui.home.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.u1.movieapp.R
-import com.u1.movieapp.data.model.DummyData
+import com.u1.movieapp.data.local.model.DummyData
 import com.u1.movieapp.databinding.ItemPosterOnlyBinding
-import com.u1.movieapp.ui.detail.DetailActivity
 
 class PosterAdapter: RecyclerView.Adapter<PosterAdapter.DataViewHolder>() {
 

@@ -2,14 +2,13 @@ package com.u1.movieapp.ui.home
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.u1.movieapp.R
-import com.u1.movieapp.data.utils.DummyBuilder
+import com.u1.movieapp.data.local.utils.DummyBuilder
 import org.junit.Rule
 import org.junit.Test
 

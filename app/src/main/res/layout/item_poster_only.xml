@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="140dp"
-    android:layout_height="220dp"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="10dp"
-    app:cardBackgroundColor="@color/secondaryTextColor"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="15dp"
-    app:strokeWidth="5dp"
-    app:strokeColor="@color/secondaryColor">
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="140dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        app:cardBackgroundColor="@color/secondaryTextColor"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/secondaryColor"
+        app:strokeWidth="5dp">
 
-        <ImageView
-            android:id="@+id/img_poster"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:src="@drawable/poster_alita"
-            android:scaleType="centerCrop"/>
-
-        <TextView
-            android:id="@+id/title_film"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="8dp"
-            android:textAlignment="center"
-            android:text="@string/title_film"
-            android:textColor="@color/primaryTextColor"
-            android:fontFamily="@font/roboto_reg"
-            android:textSize="14sp"/>
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/img_poster"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster_alita" />
 
-</com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/title_film"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_reg"
+                android:paddingTop="8dp"
+                android:text="@string/title_film"
+                android:textAlignment="center"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

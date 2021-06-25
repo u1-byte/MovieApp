@@ -1,13 +1,14 @@
-package com.u1.movieapp.data.utils
+package com.u1.movieapp.data.local.utils
 
 import com.u1.movieapp.R
-import com.u1.movieapp.data.model.DummyData
+import com.u1.movieapp.data.local.model.DummyData
 
 object DummyBuilder {
-    fun generateDummyMoviesPlaying(): List<DummyData> {
+
+    fun generateDummyMoviesPopular(): List<DummyData> {
         val movies = ArrayList<DummyData>()
         movies.add(DummyData(
-                1,
+            1,
             "Glass",
             R.drawable.poster_glass,
             "16/01/2019",
@@ -17,7 +18,7 @@ object DummyBuilder {
         ))
 
         movies.add(DummyData(
-                2,
+            2,
             "Aquaman",
             R.drawable.poster_aquaman,
             "12/12/2018",
@@ -27,7 +28,7 @@ object DummyBuilder {
         ))
 
         movies.add(DummyData(
-                3,
+            3,
             "Alita: Battle Angel",
             R.drawable.poster_alita,
             "05/02/2019",
@@ -37,7 +38,7 @@ object DummyBuilder {
         ))
 
         movies.add(DummyData(
-                4,
+            4,
             "Avengers: Infinity War",
             R.drawable.poster_infinity_war,
             "25/04/2018",
@@ -47,7 +48,7 @@ object DummyBuilder {
         ))
 
         movies.add(DummyData(
-                5,
+            5,
             "A Star Is Born",
             R.drawable.poster_a_start_is_born,
             "19/10/2018",
@@ -57,7 +58,7 @@ object DummyBuilder {
         ))
 
         movies.add(DummyData(
-                6,
+            6,
             "Bohemian Rhapsody",
             R.drawable.poster_bohemian,
             "30/10/2018",
@@ -67,7 +68,7 @@ object DummyBuilder {
         ))
 
         movies.add(DummyData(
-                7,
+            7,
             "How To Train Your Dragon",
             R.drawable.poster_how_to_train,
             "09/01/2019",
@@ -76,11 +77,6 @@ object DummyBuilder {
             "When Hiccup discovers Toothless isn't the only Night Fury, he must seek \"The Hidden World\", a secret Dragon Utopia before a hired tyrant named Grimmel finds it first."
         ))
 
-        return movies
-    }
-
-    fun generateDummyMoviesPopular(): List<DummyData> {
-        val movies = ArrayList<DummyData>()
         movies.add(DummyData(
                 8,
             "Creed II",
@@ -124,10 +120,10 @@ object DummyBuilder {
         return movies
     }
 
-    fun generateDummySeriesPlaying(): List<DummyData> {
+    fun generateDummySeriesPopular(): List<DummyData> {
         val series = ArrayList<DummyData>()
         series.add(DummyData(
-                12,
+            12,
             "Gotham",
             R.drawable.poster_gotham,
             "2014-2019",
@@ -137,7 +133,7 @@ object DummyBuilder {
         ))
 
         series.add(DummyData(
-                13,
+            13,
             "The Flash",
             R.drawable.poster_flash,
             "2014-",
@@ -147,7 +143,7 @@ object DummyBuilder {
         ))
 
         series.add(DummyData(
-                14,
+            14,
             "Iron Fist",
             R.drawable.poster_iron_fist,
             "2017-2018",
@@ -157,7 +153,7 @@ object DummyBuilder {
         ))
 
         series.add(DummyData(
-                15,
+            15,
             "Fairy Tail",
             R.drawable.poster_fairytail,
             "2009-2019",
@@ -167,7 +163,7 @@ object DummyBuilder {
         ))
 
         series.add(DummyData(
-                16,
+            16,
             "Dragon Ball",
             R.drawable.poster_dragon_ball,
             "2015-2018",
@@ -177,7 +173,7 @@ object DummyBuilder {
         ))
 
         series.add(DummyData(
-                17,
+            17,
             "Family Guy",
             R.drawable.poster_family_guy,
             "1999-",
@@ -186,11 +182,6 @@ object DummyBuilder {
             "In a wacky Rhode Island town, a dysfunctional family strive to cope with everyday life as they are thrown from one crazy scenario to another."
         ))
 
-        return series
-    }
-
-    fun generateDummySeriesPopular(): List<DummyData> {
-        val series = ArrayList<DummyData>()
         series.add(DummyData(
                 18,
             "Grey's Anatomy",
