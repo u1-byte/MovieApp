@@ -1,10 +1,15 @@
 package com.u1.movieapp.data.local
 
 import com.u1.movieapp.R
+import com.u1.movieapp.data.model.DetailModel
 import com.u1.movieapp.data.model.DummyData
+import com.u1.movieapp.data.model.MoviesModel
+import com.u1.movieapp.data.model.SeriesModel
+import com.u1.movieapp.data.remote.response.*
 
 object DummyBuilder {
 
+    //dummy movies
     fun generateDummyMoviesPopular(): List<DummyData> {
         val movies = ArrayList<DummyData>()
         movies.add(DummyData(
@@ -120,6 +125,7 @@ object DummyBuilder {
         return movies
     }
 
+    //dummy series
     fun generateDummySeriesPopular(): List<DummyData> {
         val series = ArrayList<DummyData>()
         series.add(DummyData(
@@ -233,5 +239,136 @@ object DummyBuilder {
         ))
 
         return series
+    }
+
+    //detail movies
+    fun generateDetailMovies(): DetailModel {
+        return DetailModel(
+                22,
+                "Pirates of the Caribbean",
+                "2003-07-09",
+                listOf("Adventure", "Fantasy", "Action"),
+                "Jack Sparrow, a freewheeling 18th-century pirate, quarrels with a rival pirate bent on pillaging Port Royal. When the governor's daughter is kidnapped, Sparrow decides to help the girl's love save her.",
+                "/zRBaZxS5YauLvRYjAdL4AUCwlht.jpg"
+        )
+    }
+
+    //detail series
+    fun generateDetailSeries(): DetailModel {
+        return DetailModel(
+                44,
+                "Hero of the Year",
+                "1993-12-03",
+                listOf("Animation", "Sci-fi & Fantasy", "Comedy"),
+                "Wes Weasley pretends to host a roast (actually a clip show) to Sonic that Robotnik uses to force him to surrender.\n\nSonic Says segment: Alcohol",
+                "/xjhZhermBwZtWiPA7xT7Rli2tmD.jpg"
+        )
+    }
+
+    //movies data using new model
+    fun generateMoviesData(): List<MoviesModel> {
+        return listOf(
+                MoviesModel(
+                        11,
+                        "Star Wars",
+                        "/tdQzRSk4PXX6hzjLcQWHafYtZTI.jpg"
+                ),
+
+                MoviesModel(
+                        12,
+                        "Finding Nemo",
+                        "/xwggrEugjcJDuabIWvK2CpmK91z.jpg"
+                )
+        )
+    }
+
+    //series data using new model
+    fun generateSeriesData(): List<SeriesModel> {
+        return listOf(
+                SeriesModel(
+                        11,
+                        "Sexual Chemistry",
+                        "/3hFpUg6Ty25Vs5XgbnNz1Xcirb5.jpg"
+                ),
+
+                SeriesModel(
+                        12,
+                        "Han Wu Da Di",
+                        "/sg6tjBKBu62mC9uj2CJPoP0Zl2M.jpg"
+                )
+        )
+    }
+
+    //responses data
+    fun generateMoviesResponse(): List<MoviesPopularResponse> {
+        return listOf(
+                MoviesPopularResponse(
+                        id = 66,
+                        title = "Absolute Power",
+                        poster = "/n7U0FEirHej1yQIy2mAzDtF9wBz.jpg",
+                        year = "1997-02-14"
+                ),
+
+                MoviesPopularResponse(
+                        id = 77,
+                        title = "Memento",
+                        poster = "/yuNs09hvpHVU1cBTCAk9zxsL2oW.jpg",
+                        year = "2000-10-11"
+                ),
+
+                MoviesPopularResponse(
+                        id = 88,
+                        title = "Dirty Dancing",
+                        poster = "/dvEggyDTTIBDvrUNjTEa9depT0f.jpg",
+                        year = "1987-08-21"
+                )
+        )
+    }
+
+    fun generateSeriesResponse(): List<SeriesPopularResponse> {
+        return listOf(
+                SeriesPopularResponse(
+                        id = 66,
+                        title = "Absolute Power",
+                        poster = "/n7U0FEirHej1yQIy2mAzDtF9wBz.jpg",
+                        year = "1997-02-14"
+                ),
+
+                SeriesPopularResponse(
+                        id = 77,
+                        title = "Memento",
+                        poster = "/yuNs09hvpHVU1cBTCAk9zxsL2oW.jpg",
+                        year = "2000-10-11"
+                ),
+
+                SeriesPopularResponse(
+                        id = 88,
+                        title = "Dirty Dancing",
+                        poster = "/dvEggyDTTIBDvrUNjTEa9depT0f.jpg",
+                        year = "1987-08-21"
+                )
+        )
+    }
+
+    fun generateDetailMoviesResponse(): MoviesDetailResponse {
+        return MoviesDetailResponse(
+                id = 101,
+                title = "Léon: The Professional",
+                year = "1994-09-14",
+                genres = listOf(GenreResponse(18, "Drama")),
+                overview = "Léon, the top hit man in New York, has earned a rep as an effective \"cleaner\". But when his next-door neighbors are wiped out by a loose-cannon DEA agent, he becomes the unwilling custodian of 12-year-old Mathilda. Before long, Mathilda's thoughts turn to revenge, and she considers following in Léon's footsteps.",
+                poster = "/wHqGb8J6tXBVwjqWooGMtNEjs2A.jpg"
+        )
+    }
+
+    fun generateDetailSeriesResponse(): SeriesDetailResponse {
+        return SeriesDetailResponse(
+                id = 101,
+                title = "Beat the Geeks",
+                year = "2002-10-07",
+                genres = listOf(GenreResponse(18, "Drama")),
+                overview = "Beat the Geeks is an American comedy game show that aired on Comedy Central from 2001 to 2002. The show was rerun on The Comedy Network in Canada and reruns currently air on G4techTV Canada and Prime in New Zealand.\n\nOn the show, contestants face off in trivia matches against \"geeks\" who are well-versed in music, movies, and television, as well as a fourth guest geek with an alternate area of expertise which varies from episode to episode. The object is to outsmart the geek at their own subject; as a handicap, the geeks are given questions of considerably greater difficulty than the contestants. Beat the Geeks was taped at the Hollywood Center Studios.",
+                poster = "/iEjDG1ZP0ocUHdqsozEgIlwaCpI.jpg"
+        )
     }
 }
